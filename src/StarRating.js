@@ -24,7 +24,6 @@ export default function StarRating({ maxRating = 5 }) {
             onRate={() => handleRating(i + 1)}
             onHoverIn={() => setTempRating(i + 1)}
             onHoverOut={() => setTempRating(0)}
-            tempRating={tempRating}
           />
         ))}
       </div>
