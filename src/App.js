@@ -215,7 +215,14 @@ function MovieList({ movies, onSelectedMovie }) {
 function Movie({ movie, onSelectedMovie }) {
   return (
     <li onClick={() => onSelectedMovie(movie.imdbID)}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
+      {movie.Poster !== "N/A" ? (
+        <img src={movie.Poster} alt={`${movie.Title} poster`} />
+      ) : (
+        <img
+          src="./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
+          alt={`${movie.Title} poster`}
+        />
+      )}
       <h3>{movie.Title}</h3>
       <div>
         <p>
@@ -272,7 +279,14 @@ function MovieDetails({ selectedId, onCloseMovie }) {
             <button className="btn-back" onClick={onCloseMovie}>
               &larr;
             </button>
-            <img src={poster} alt={`Poster of the ${movie} movie`} />
+            {poster !== "N/A" ? (
+              <img src={poster} alt={`${title} poster`} />
+            ) : (
+              <img
+                src="./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
+                alt={`${title} poster`}
+              />
+            )}
             <div className="details-overview">
               <h2>{title}</h2>
               <p>
