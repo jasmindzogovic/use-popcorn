@@ -35,8 +35,6 @@ export default function StarRating({
     color,
     fontSize: `${size / 1.5}px`,
   };
-  console.log(messages)
-  console.log(messages.length)
 
   return (
     <div style={containerStyle} className={className}>
