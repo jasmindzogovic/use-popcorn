@@ -299,7 +299,7 @@ function MovieDetails({ selectedId, onCloseMovie }) {
 
           <section>
             <div className="rating">
-              <StarRating maxRating={10} />
+              <StarRating maxRating={10} size="2.5rem"/>
             </div>
             <p>
               <em>{plot}</em>
