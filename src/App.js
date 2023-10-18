@@ -228,14 +228,14 @@ function MovieList({ movies, onSelectedMovie }) {
 function Movie({ movie, onSelectedMovie }) {
   return (
     <li onClick={() => onSelectedMovie(movie.imdbID)}>
-      {movie.Poster !== "N/A" ? (
-        <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      ) : (
-        <img
-          src="./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
-          alt={`${movie.Title} poster`}
-        />
-      )}
+      <img
+        src={
+          movie.Poster !== "N/A"
+            ? movie.Poster
+            : "./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
+        }
+        alt={`${movie.Title} poster`}
+      />
       <h3>{movie.Title}</h3>
       <div>
         <p>
@@ -313,14 +313,14 @@ function MovieDetails({ selectedId, onCloseMovie, watched, onAddWatched }) {
             <button className="btn-back" onClick={onCloseMovie}>
               &larr;
             </button>
-            {poster !== "N/A" ? (
-              <img src={poster} alt={`${title} poster`} />
-            ) : (
-              <img
-                src="./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
-                alt={`${title} poster`}
-              />
-            )}
+            <img
+              src={
+                poster !== "N/A"
+                  ? poster
+                  : "./360_F_191953033_gehQATeDoh5z6PyRDbeKyBZuS83CjMEF.jpg"
+              }
+              alt={`${title} poster`}
+            />
             <div className="details-overview">
               <h2>{title}</h2>
               <p>
