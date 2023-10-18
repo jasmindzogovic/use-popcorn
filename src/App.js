@@ -9,7 +9,11 @@ const KEY = "8dd1137b";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState([])
+  // const [watched, setWatched] = useState(() => {
+  //   const storedValue = localStorage.getItem("watched");
+  //   return JSON.parse(storedValue);
+  // });
   const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState(null);
@@ -29,6 +33,10 @@ export default function App() {
   function handleRemoveMovie(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -232,6 +240,7 @@ function MovieDetails({ selectedId, onCloseMovie, watched, onAddWatched }) {
     genre,
   } = movie;
 
+  // Won't work cause hooks need to be at top level, and early returns mess with order of hooks
   // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
   // if(imdbRating > 8) return <p>Greatest ever!</p>
 
@@ -248,6 +257,7 @@ function MovieDetails({ selectedId, onCloseMovie, watched, onAddWatched }) {
 
     onAddWatched(newWatchedMovie);
     onCloseMovie();
+    // setAvgRating(() => (Number(imdbRating) + userRating) / 2);
   }
 
   useEffect(() => {
