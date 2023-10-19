@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const average = (arr) =>
@@ -9,7 +9,7 @@ const KEY = "8dd1137b";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([])
+  const [watched, setWatched] = useState([]);
   // const [watched, setWatched] = useState(() => {
   //   const storedValue = localStorage.getItem("watched");
   //   return JSON.parse(storedValue);
@@ -144,6 +144,25 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+  const inputElement = useRef(null);
+
+  useEffect(() => {
+    const callback = (e) => {
+      if (document.activeElement === inputElement.current) return;
+
+      if (e.key === "Enter") {
+        inputElement.current.focus();
+        setQuery("");
+      }
+    };
+
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, [setQuery]);
+
   return (
     <input
       className="search"
@@ -151,6 +170,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputElement}
     />
   );
 }
